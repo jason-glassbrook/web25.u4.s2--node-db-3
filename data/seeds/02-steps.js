@@ -1,5 +1,5 @@
-exports.seed = function(knex) {
-    return knex("steps").insert([
+exports.seed = function (knex) {
+    return knex ("steps").insert ([
         {
             scheme_id: 1,
             step_number: 1,
@@ -79,5 +79,5 @@ exports.seed = function(knex) {
             step_number: 1,
             instructions: "steal coworker's name tag",
         },
-    ]);
-};
+    ])
+}
