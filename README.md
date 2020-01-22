@@ -30,18 +30,14 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
 -   [ ] `getAll ()`:
     -   Calling find returns a promise that resolves to an array of all schemes in the database.
     -   No steps are included.
--   [ ] `get (scheme_id)`:
-    -   Expects a `scheme_id` as its only parameter.
-    -   Resolve to a single scheme object.
-    -   On an invalid `scheme_id`, resolves to `null`.
--   [ ] `getOwnSteps (scheme_id)`:
-    -   Expects a `scheme_id`.
-    -   Resolves to an array of all correctly ordered steps for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
-    -   This array should include the `scheme_name` _not_ the `scheme_id`.
 -   [ ] `push (scheme)`:
     -   Expects a `scheme` object.
     -   Inserts scheme into the database.
     -   Resolves to the newly inserted scheme, including `id`.
+-   [ ] `get (scheme_id)`:
+    -   Expects a `scheme_id` as its only parameter.
+    -   Resolve to a single scheme object.
+    -   On an invalid `scheme_id`, resolves to `null`.
 -   [ ] `set (scheme_id, scheme)`:
     -   Expects a `scheme` object and a `scheme_id`.
     -   Updates the scheme with the given id.
@@ -51,6 +47,10 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
     -   Resolves to the removed `scheme`.
     -   Resolves to `null` on an invalid id.
     -   (Hint: Only worry about removing the `scheme`. The database is configured to automatically remove all associated steps.)
+-   [ ] `getOwnAllSteps (scheme_id)`:
+    -   Expects a `scheme_id`.
+    -   Resolves to an array of all correctly ordered steps for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
+    -   This array should include the `scheme_name` _not_ the `scheme_id`.
 
 #### Schemes Schema
 
@@ -73,11 +73,11 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
 The following endpoints are available to test the functionality of the model methods.
 
 -   [ ] `GET /api/schemes/` - gets master list of schemes (without steps)
--   [ ] `GET /api/schemes/:id` - gets a single scheme
--   [ ] `GET /api/schemes/:id/steps` - gets all steps for a given scheme, ordered correctly
 -   [ ] `POST /api/schemes` - adds a new scheme
+-   [ ] `GET /api/schemes/:id` - gets a single scheme
 -   [ ] `PUT /api/schemes/:id` - updates a given scheme
 -   [ ] `DELETE /api/schemes/:id` - removes a given scheme and all associated steps
+-   [ ] `GET /api/schemes/:id/steps` - gets all steps for a given scheme, ordered correctly
 
 ## Stretch Problems
 
@@ -85,5 +85,5 @@ The following endpoints are available to test the functionality of the model met
     -   [ ] Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 8 records.
     -   [ ] Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
 -   [ ] Add the following method to your API
-    -   [ ] `addStep (step, scheme_id)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
-    -   [ ] You may use `POST /api/schemes/:id/addStep` to test this method.
+    -   [ ] `pushOwnSteps (step, scheme_id)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
+    -   [ ] You may use `POST /api/schemes/:scheme_id/steps` to test this method.
