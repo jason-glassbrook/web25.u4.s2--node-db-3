@@ -1,11 +1,11 @@
 const db = require ('./db')
 
 module.exports =
-  async (id) => {
-    const [ record ] = await (
+  async (step_id) => {
+    const [ step_record ] = await (
       db ('steps')
-      .where ({ id })
+      .where ({ step_id })
       )
 
-    return record
+    return step_record
   }

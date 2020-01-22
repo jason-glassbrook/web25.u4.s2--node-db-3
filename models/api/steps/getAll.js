@@ -2,9 +2,9 @@ const db = require ('./db')
 
 module.exports =
   async () => {
-    const records = await (
+    const step_records = await (
       db ('steps')
     )
 
-    return records
+    return step_records
   }

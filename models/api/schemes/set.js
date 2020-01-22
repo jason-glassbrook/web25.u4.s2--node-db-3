@@ -2,14 +2,14 @@ const db = require ('./db')
 const get = require ('./get')
 
 module.exports =
-  async (id, value) => {
+  async (scheme_id, scheme_value) => {
     await (
       db ('schemes')
-      .where ({ id })
-      .update (value)
+      .where ({ scheme_id })
+      .update (scheme_value)
     )
 
-    const record = await get (id)
+    const scheme_record = await get (scheme_id)
 
-    return record
+    return scheme_record
   }
