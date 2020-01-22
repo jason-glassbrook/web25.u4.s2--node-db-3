@@ -18,6 +18,8 @@ router.route ('/')
     res.json (schemes)
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to get schemes' })
@@ -33,6 +35,8 @@ router.route ('/')
     .json (scheme)
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to create new scheme' })
@@ -62,6 +66,8 @@ router.route ('/:scheme_id')
     }
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to get schemes' })
@@ -81,6 +87,8 @@ router.route ('/:scheme_id')
         .json (scheme)
       })
       .catch ((error) => {
+        console.log (error)
+
         res
         .status (500)
         .json ({ message : 'Failed to update scheme' })
@@ -93,6 +101,8 @@ router.route ('/:scheme_id')
     }
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to update scheme' })
@@ -115,6 +125,8 @@ router.route ('/:scheme_id')
     }
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to delete scheme' })
@@ -143,6 +155,8 @@ router.route ('/:scheme_id/steps')
     }
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to get steps' })
@@ -162,6 +176,8 @@ router.route ('/:scheme_id/steps')
         .json (step)
       })
       .catch ((error) => {
+        console.log (error)
+
         res
         .status (500)
         .json ({ message : 'Failed to create new step' })
@@ -174,6 +190,8 @@ router.route ('/:scheme_id/steps')
     }
   })
   .catch ((error) => {
+    console.log (error)
+
     res
     .status (500)
     .json ({ message : 'Failed to create new step' })
