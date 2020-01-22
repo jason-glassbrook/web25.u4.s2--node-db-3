@@ -1,15 +1,16 @@
 const db = require ('./db')
 
 module.exports =
-  async () => {
-    const records = await (
+  async (scheme_id) => {
+    const step_records = await (
       db
       .select ('*')
       .from ('steps')
       .join ('schemes', function () {
-        this.on ('steps.scheme_id', '=', 'schemes.scheme_id')
+        this.on ('steps.scheme_id', '=', 'schemes.id')
       })
+      .where ({ scheme_id : scheme_id })
     )
 
-    return records
+    return step_records
   }
