@@ -124,15 +124,15 @@ router.route ('/:scheme_id')
 /***************************************
   route /:scheme_id/steps
 ----------------------------------------
-  - GET -> db.schemas.getOwnAllSteps
-  - POST -> db.schemas.pushOwnSteps
+  - GET -> db.schemas.ownSteps.getAll
+  - POST -> db.schemas.ownSteps.push
 ***************************************/
 
 router.route ('/:scheme_id/steps')
 .get ((req, res) => {
   const { scheme_id } = req.params
 
-  db.schemes.getOwnAllSteps (scheme_id)
+  db.schemes.ownSteps.getAll (scheme_id)
   .then ((steps) => {
     if (steps.length) {
       res.json (steps)
@@ -155,7 +155,7 @@ router.route ('/:scheme_id/steps')
   db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
-      db.schemes.pushOwnSteps (stepData, scheme_id)
+      db.schemes.ownSteps.push (stepData, scheme_id)
       .then ((step) => {
         res
         .status (201)

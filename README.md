@@ -47,7 +47,10 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
     -   Resolves to the removed `scheme`.
     -   Resolves to `null` on an invalid id.
     -   (Hint: Only worry about removing the `scheme`. The database is configured to automatically remove all associated steps.)
--   [ ] `getOwnAllSteps (scheme_id)`:
+
+Write helpers methods in `./models/api/schemes/ownSteps` that match the following specifications:
+
+-   [ ] `getAll (scheme_id)`:
     -   Expects a `scheme_id`.
     -   Resolves to an array of all correctly ordered steps for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
     -   This array should include the `scheme_name` _not_ the `scheme_id`.
@@ -85,5 +88,5 @@ The following endpoints are available to test the functionality of the model met
     -   [ ] Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 8 records.
     -   [ ] Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
 -   [ ] Add the following method to your API
-    -   [ ] `pushOwnSteps (step, scheme_id)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
+    -   [ ] `schemes/ownSteps/push (scheme_id, step)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
     -   [ ] You may use `POST /api/schemes/:scheme_id/steps` to test this method.
