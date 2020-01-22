@@ -1,7 +1,13 @@
+/**********************************************************/
+
+require ('dotenv').config ()
+
 const server = require ('./server.js')
+const port = process.env.PORT || 10122
 
-const PORT = process.env.PORT || 5000
-
-server.listen (PORT, () => {
-  console.log (`Listening on port ${PORT}...`)
+server.listen (port, () => {
+  console.log (`it's alive!`)
+  console.log (`\n>>> listening on port ${port} <<<\n`)
 })
+
+/**************************************/
