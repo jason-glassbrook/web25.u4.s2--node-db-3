@@ -11,8 +11,8 @@
 
 For this lab you will
 
--   write SQL statements against the `northwind.db3` database. Once you have the correct SQL Statement for each query, write it inside the _queries.sql_ file under the corresponding comment.
--   write the db helper methods for the `schemes` resource in `./schemes/scheme-model.js`
+-   [ ] write SQL statements against the `northwind.db3` database. Once you have the correct SQL Statement for each query, write it inside the _queries.sql_ file under the corresponding comment.
+-   [x] write the db helper methods for the `schemes` resource in `./schemes/scheme-model.js`
 
 ### Multi Table Queries
 
@@ -27,22 +27,22 @@ Use a graphical tool like `SQLite Studio` to open `./data/northwind.db3` and exe
 
 Write helpers methods in `./models/api/schemes` that match the following specifications:
 
--   [ ] `getAll ()`:
+-   [x] `getAll ()`:
     -   Calling find returns a promise that resolves to an array of all schemes in the database.
     -   No steps are included.
--   [ ] `push (scheme)`:
+-   [x] `push (scheme)`:
     -   Expects a `scheme` object.
     -   Inserts scheme into the database.
     -   Resolves to the newly inserted scheme, including `id`.
--   [ ] `get (scheme_id)`:
+-   [x] `get (scheme_id)`:
     -   Expects a `scheme_id` as its only parameter.
     -   Resolve to a single scheme object.
     -   On an invalid `scheme_id`, resolves to `null`.
--   [ ] `set (scheme_id, scheme)`:
+-   [x] `set (scheme_id, scheme)`:
     -   Expects a `scheme` object and a `scheme_id`.
     -   Updates the scheme with the given id.
     -   Resolves to the newly updated scheme object.
--   [ ] `pull (scheme_id)`:
+-   [x] `pull (scheme_id)`:
     -   Removes the scheme with the provided `scheme_id`.
     -   Resolves to the removed `scheme`.
     -   Resolves to `null` on an invalid id.
@@ -50,7 +50,7 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
 
 Write helpers methods in `./models/api/schemes/ownSteps` that match the following specifications:
 
--   [ ] `getAll (scheme_id)`:
+-   [x] `getAll (scheme_id)`:
     -   Expects a `scheme_id`.
     -   Resolves to an array of all correctly ordered steps for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
     -   This array should include the `scheme_name` _not_ the `scheme_id`.
@@ -75,18 +75,18 @@ Write helpers methods in `./models/api/schemes/ownSteps` that match the followin
 
 The following endpoints are available to test the functionality of the model methods.
 
--   [ ] `GET /api/schemes/` - gets master list of schemes (without steps)
--   [ ] `POST /api/schemes` - adds a new scheme
--   [ ] `GET /api/schemes/:id` - gets a single scheme
--   [ ] `PUT /api/schemes/:id` - updates a given scheme
--   [ ] `DELETE /api/schemes/:id` - removes a given scheme and all associated steps
--   [ ] `GET /api/schemes/:id/steps` - gets all steps for a given scheme, ordered correctly
+-   [x] `GET /api/schemes/` - gets master list of schemes (without steps)
+-   [x] `POST /api/schemes` - adds a new scheme
+-   [x] `GET /api/schemes/:id` - gets a single scheme
+-   [x] `PUT /api/schemes/:id` - updates a given scheme
+-   [x] `DELETE /api/schemes/:id` - removes a given scheme and all associated steps
+-   [x] `GET /api/schemes/:id/steps` - gets all steps for a given scheme, ordered correctly
 
 ## Stretch Problems
 
 -   [ ] In [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top):
     -   [ ] Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 8 records.
     -   [ ] Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
--   [ ] Add the following method to your API
-    -   [ ] `schemes/ownSteps/push (scheme_id, step)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
-    -   [ ] You may use `POST /api/schemes/:scheme_id/steps` to test this method.
+-   [x] Add the following method to your API
+    -   [x] `schemes/ownSteps/push (scheme_id, step)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
+    -   [x] You may use `POST /api/schemes/:scheme_id/steps` to test this method.
