@@ -76,7 +76,7 @@ The following endpoints are available to test the functionality of the model met
 -   `GET /api/schemes/:id` - gets a single scheme
 -   `GET /api/schemes/:id/steps` - gets all steps for a given scheme, ordered correctly
 -   `POST /api/schemes` - adds a new scheme
--   `PUT /api/schemes:id` - updates a given scheme
+-   `PUT /api/schemes/:id` - updates a given scheme
 -   `DELETE /api/schemes/:id` - removes a given scheme and all associated steps
 
 ## Stretch Problems
