@@ -42,7 +42,7 @@ Write helpers methods in `./models/api/schemes` that match the following specifi
     -   Expects a `scheme` object.
     -   Inserts scheme into the database.
     -   Resolves to the newly inserted scheme, including `id`.
--   [ ] `set (scheme, scheme_id)`:
+-   [ ] `set (scheme_id, scheme)`:
     -   Expects a `scheme` object and a `scheme_id`.
     -   Updates the scheme with the given id.
     -   Resolves to the newly updated scheme object.

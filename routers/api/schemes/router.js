@@ -111,7 +111,7 @@ router.put ('/:scheme_id', (req, res) => {
   db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
-      db.schemes.set (changes, scheme_id)
+      db.schemes.set (scheme_id, changes)
       .then ((scheme) => {
         res
         .status (201)
