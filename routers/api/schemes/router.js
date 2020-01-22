@@ -85,6 +85,11 @@ router.post ('/:scheme_id/steps', (req, res) => {
         .status (201)
         .json (step)
       })
+      .catch ((error) => {
+        res
+        .status (500)
+        .json ({ message : 'Failed to create new step' })
+      })
     }
     else {
       res
@@ -111,6 +116,11 @@ router.put ('/:scheme_id', (req, res) => {
         res
         .status (201)
         .json (scheme)
+      })
+      .catch ((error) => {
+        res
+        .status (500)
+        .json ({ message : 'Failed to update scheme' })
       })
     }
     else {
