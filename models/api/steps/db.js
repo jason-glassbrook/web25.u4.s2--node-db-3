@@ -1,1 +1,1 @@
-module.exports = require ('../../../data/config.js')
+module.exports = require ('../db')
