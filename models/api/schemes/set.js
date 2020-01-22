@@ -5,7 +5,7 @@ module.exports =
   async (scheme_id, scheme_value) => {
     await (
       db ('schemes')
-      .where ({ scheme_id })
+      .where ({ id : scheme_id })
       .update (scheme_value)
     )
 

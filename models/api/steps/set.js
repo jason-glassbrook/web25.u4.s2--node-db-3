@@ -5,7 +5,7 @@ module.exports =
   async (step_id, step_value) => {
     await (
       db ('steps')
-      .where ({ step_id })
+      .where ({ id : step_id })
       .update (step_value)
     )
 

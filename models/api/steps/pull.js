@@ -7,7 +7,7 @@ module.exports =
 
     await (
       db ('steps')
-      .where ({ step_id })
+      .where ({ id : step_id })
       .delete ()
     )
 
