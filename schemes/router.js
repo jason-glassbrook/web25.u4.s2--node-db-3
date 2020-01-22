@@ -1,7 +1,7 @@
 const express = require ('express')
 
 const db = {
-  'schemes' : require ('./scheme-model.js'),
+  'schemes' : require ('./model.js'),
 }
 
 const router = express.Router ()
