@@ -5,112 +5,147 @@ const { api : db } = require ('../../../models')
 const router = express.Router ()
 
 router.get ('/', (req, res) => {
-  db.schemes.find ()
+  db.schemes.getAll ()
   .then ((schemes) => {
     res.json (schemes)
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to get schemes' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to get schemes' })
   })
 })
 
-router.get ('/:id', (req, res) => {
-  const { id } = req.params
+router.get ('/:scheme_id', (req, res) => {
+  const { scheme_id } = req.params
 
-  db.schemes.findById (id)
+  db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
       res.json (scheme)
     } else {
-      res.status (404).json ({ message : 'Could not find scheme with given id.' })
+      res
+      .status (404)
+      .json ({ message : 'Could not find scheme with given id.' })
     }
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to get schemes' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to get schemes' })
   })
 })
 
-router.get ('/:id/steps', (req, res) => {
-  const { id } = req.params
+router.get ('/:scheme_id/steps', (req, res) => {
+  const { scheme_id } = req.params
 
-  db.schemes.findSteps (id)
+  db.schemes.getOwnSteps (scheme_id)
   .then ((steps) => {
     if (steps.length) {
       res.json (steps)
     } else {
-      res.status (404).json ({ message : 'Could not find steps for given scheme' })
+      res
+      .status (404)
+      .json ({ message : 'Could not find steps for given scheme' })
     }
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to get steps' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to get steps' })
   })
 })
 
 router.post ('/', (req, res) => {
   const schemeData = req.body
 
-  db.schemes.add (schemeData)
+  db.schemes.push (schemeData)
   .then ((scheme) => {
-    res.status (201).json (scheme)
+    res
+    .status (201)
+    .json (scheme)
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to create new scheme' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to create new scheme' })
   })
 })
 
-router.post ('/:id/steps', (req, res) => {
+router.post ('/:scheme_id/steps', (req, res) => {
   const stepData = req.body
-  const { id } = req.params
+  const { scheme_id } = req.params
 
-  db.schemes.findById (id)
+  db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
-      db.schemes.addStep (stepData, id)
+      db.schemes.pushOwnSteps (stepData, scheme_id)
       .then ((step) => {
-        res.status (201).json (step)
+        res
+        .status (201)
+        .json (step)
       })
-    } else {
-      res.status (404).json ({ message : 'Could not find scheme with given id.' })
+    }
+    else {
+      res
+      .status (404)
+      .json ({ message : 'Could not find scheme with given id.' })
     }
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to create new step' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to create new step' })
   })
 })
 
-router.put ('/:id', (req, res) => {
-  const { id } = req.params
+router.put ('/:scheme_id', (req, res) => {
+  const { scheme_id } = req.params
   const changes = req.body
 
-  db.schemes.findById (id)
+  db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
-      db.schemes.update (changes, id)
-      .then ((updatedScheme) => {
-        res.json (updatedScheme)
+      db.schemes.set (changes, scheme_id)
+      .then ((scheme) => {
+        res
+        .status (201)
+        .json (scheme)
       })
-    } else {
-      res.status (404).json ({ message : 'Could not find scheme with given id' })
+    }
+    else {
+      res
+      .status (404)
+      .json ({ message : 'Could not find scheme with given id' })
     }
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to update scheme' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to update scheme' })
   })
 })
 
-router.delete ('/:id', (req, res) => {
-  const { id } = req.params
+router.delete ('/:scheme_id', (req, res) => {
+  const { scheme_id } = req.params
 
-  db.schemes.remove (id)
-  .then ((deleted) => {
-    if (deleted) {
-      res.json ({ removed : deleted })
-    } else {
-      res.status (404).json ({ message : 'Could not find scheme with given id' })
+  db.schemes.pull (scheme_id)
+  .then ((scheme) => {
+    if (scheme) {
+      res
+      .status (200)
+      .json (scheme)
+    }
+    else {
+      res
+      .status (404)
+      .json ({ message : 'Could not find scheme with given id' })
     }
   })
   .catch ((error) => {
-    res.status (500).json ({ message : 'Failed to delete scheme' })
+    res
+    .status (500)
+    .json ({ message : 'Failed to delete scheme' })
   })
 })
 
