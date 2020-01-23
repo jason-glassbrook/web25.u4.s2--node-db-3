@@ -169,7 +169,7 @@ router.route ('/:scheme_id/steps')
   db.schemes.get (scheme_id)
   .then ((scheme) => {
     if (scheme) {
-      db.schemes.ownSteps.push (stepData, scheme_id)
+      db.schemes.ownSteps.push (scheme_id, stepData)
       .then ((step) => {
         res
         .status (201)
