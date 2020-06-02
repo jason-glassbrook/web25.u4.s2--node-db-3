@@ -1,10 +1,43 @@
-const express = require('express');
+/***********************************************************
+  server
+***********************************************************/
 
-const SchemeRouter = require('./schemes/scheme-router.js');
+/// tools ///
 
-const server = express();
+const express = require ('express')
+const helmet = require ('helmet')
+const morgan = require ('morgan')
 
-server.use(express.json());
-server.use('/api/schemes', SchemeRouter);
+/***************************************
+  setup server
+***************************************/
 
-module.exports = server;
+const server = express ()
+
+/// wares ///
+
+server.use ([
+  helmet (),
+  morgan ('dev'),
+])
+
+/// routers ///
+
+server.use ('/api', require ('./routers/api').router)
+
+/// requests ///
+
+server.route ('*')
+.all ((ri, ro) => {
+  ro
+  .status (501)
+  .json ({
+    error : {
+      message : `not implemented : ${ri.method} ${ri.originalUrl}`,
+    }
+  })
+})
+
+/**************************************/
+
+module.exports = server
